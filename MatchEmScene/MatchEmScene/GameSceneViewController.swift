@@ -12,7 +12,8 @@ import UIKit
 // Min & max width and height for rectangles
 private let rectSizeMin: CGFloat = 50.0
 private let rectSizeMax: CGFloat = 150.0
-
+// How long for the rectangle to fade away
+private var fadeDuration: TimeInterval = 0.8
 
 class GameSceneViewController: UIViewController {
     
@@ -76,6 +77,18 @@ extension GameSceneViewController {
                 action: #selector(self.handleTouch(sender:)),
                 for: .touchUpInside)
 
+    }
+    
+    //================================================
+    func removeRectangle(rectangle: UIButton) {
+        // Rectangle fade animation
+        let pa = UIViewPropertyAnimator(duration: fadeDuration,
+        curve: .linear,
+        animations: nil)
+        pa.addAnimations {
+            rectangle.alpha = 0.0
+        }
+        pa.startAnimation()
     }
 }
 
