@@ -34,6 +34,8 @@ class GameSceneViewController: UIViewController {
         
         // Creates a rectangle 
         createRectangle()
+        createRectangle()
+        createRectangle()
     }
 
 
@@ -44,9 +46,14 @@ class GameSceneViewController: UIViewController {
 extension GameSceneViewController {
 //================================================
     private func createRectangle() {
+        // Get random values for size and location
+        let randSize = Utility.getRandomSize(fromMin: rectSizeMin, throughMax: rectSizeMax)
+        let randLocation = Utility.getRandomLocation(size: randSize, screenSize: view.bounds.size)
+        let randomFrame = CGRect(origin: randLocation, size: randSize)
+        
         // Creates a rectangle
-        let rectangleFrame = CGRect(x: 50, y: 150, width: 80, height: 40)
-        let rectangle = UIButton(frame: rectangleFrame)
+        //let rectangleFrame = CGRect(x: 50, y: 150, width: 80, height: 40)
+        let rectangle = UIButton(frame: randomFrame)
         
         //Button/rectangle setup
         rectangle.backgroundColor = .green
