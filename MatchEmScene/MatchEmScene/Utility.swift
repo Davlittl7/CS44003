@@ -36,5 +36,20 @@ class Utility: NSObject {
     let location = CGPoint(x: rectX, y: rectY)
     return location
   }
+  
+  //================================================
+  static func getRandomColor(randomAlpha: Bool) -> UIColor {
+    // Get random values for the RGB components
+    let randRed = randomFloatZeroThroughOne()
+    let randGreen = randomFloatZeroThroughOne()
+    let randBlue = randomFloatZeroThroughOne()
+    // Transparency can be none or random.
+    var alpha:CGFloat = 1.0
+    if randomAlpha {
+    alpha = randomFloatZeroThroughOne()
+    }
+    return UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: alpha)
+  }
+
 
 }
