@@ -52,6 +52,14 @@ class GameSceneViewController: UIViewController {
 
 }
 
+// MARK: - ==== Internal Properties ====
+// Keep track of all rectangles created
+private var rectangles = [UIButton]()
+
+// Rectangle creation interval
+private var newRectInterval: TimeInterval = 1.2
+// Rectangle creation, so the timer can be stopped
+private var newRectTimer: Timer?
 
 // MARK: - ==== Rectangle Methods ====
 extension GameSceneViewController {
@@ -80,6 +88,9 @@ extension GameSceneViewController {
         rectangle.addTarget(self,
                 action: #selector(self.handleTouch(sender:)),
                 for: .touchUpInside)
+        // Save the rectangle till the game is over
+        rectangles.append(rectangle)
+
 
     }
     
