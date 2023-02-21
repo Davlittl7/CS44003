@@ -15,6 +15,10 @@ private let rectSizeMax: CGFloat = 150.0
 
 
 class GameSceneViewController: UIViewController {
+    
+    // Random transparency on or off
+    private var randomAlpha = false
+
 
     // MARK: - ==== View Controller Methods ====
     override func viewDidLoad() {
@@ -24,7 +28,9 @@ class GameSceneViewController: UIViewController {
     
     //================================================ 
     @objc private func handleTouch(sender: UIButton) {
-        print("\(#function) - \(sender)")
+        //print("\(#function) - \(sender)")
+        // Add emoji text to the rectangle
+        sender.setTitle("", for: .normal)
     }
 
     
@@ -56,7 +62,7 @@ extension GameSceneViewController {
         let rectangle = UIButton(frame: randomFrame)
         
         //Button/rectangle setup
-        rectangle.backgroundColor = .green
+        rectangle.backgroundColor = Utility.getRandomColor(randomAlpha: randomAlpha)
         rectangle.setTitle("", for: .normal)
         rectangle.setTitleColor(.black, for: .normal)
         rectangle.titleLabel?.font = .systemFont(ofSize: 50)
