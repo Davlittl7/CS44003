@@ -32,6 +32,10 @@ class GameSceneViewController: UIViewController {
         //print("\(#function) - \(sender)")
         // Add emoji text to the rectangle
         sender.setTitle("", for: .normal)
+        // Remove the rectangle
+        removeRectangle(rectangle: sender)
+        // Remove the final button owner
+        sender.removeFromSuperview()
     }
 
     
