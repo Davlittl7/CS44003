@@ -31,7 +31,7 @@ class GameSceneViewController: UIViewController {
     @objc private func handleTouch(sender: UIButton) {
         //print("\(#function) - \(sender)")
         // Add emoji text to the rectangle
-        //sender.setTitle("😄", for: .normal)
+        //sender.setTitle("😄", for: .normal)
         // Remove the rectangle
         removeRectangle(rectangle: sender)
         // Remove the final button owner
