@@ -99,7 +99,7 @@ class GameSceneViewController: UIViewController {
 private var rectangles = [UIButton]()
 
 // Game duration
-private var gameDuration: TimeInterval = 10.0
+private var gameDuration: TimeInterval = 12.0
 // Game timer
 private var gameTimer: Timer?
 
@@ -113,10 +113,10 @@ extension GameSceneViewController {
         rectanglesCreated += 1
         
         // Decrement the game time remaining
+        gameTimeRemaining -= newRectInterval
         if(gameTimeRemaining < newRectInterval) {
             gameTimeRemaining = 0.0
         }
-        gameTimeRemaining -= newRectInterval
         
         // Get random values for size and location
         let randSize = Utility.getRandomSize(fromMin: rectSizeMin, throughMax: rectSizeMax)
