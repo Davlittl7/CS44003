@@ -113,6 +113,9 @@ extension GameSceneViewController {
         rectanglesCreated += 1
         
         // Decrement the game time remaining
+        if(gameTimeRemaining < newRectInterval) {
+            gameTimeRemaining = 0.0
+        }
         gameTimeRemaining -= newRectInterval
         
         // Get random values for size and location
