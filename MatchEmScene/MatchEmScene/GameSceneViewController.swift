@@ -32,10 +32,10 @@ class GameSceneViewController: UIViewController {
 
     @IBOutlet weak var gameInfoLabel: UILabel!
     private var gameInfo: String {
-        let labelText = "Total: \(rectanglesCreated) - Touched \(rectanglesTouched)"
+        let labelText = "Total: \(rectanglesCreated) - Touched \(rectanglesTouched) - Time: \(gameTimeRemaining)"
         // End of game, no time left, make sure label is updated
-        //gameTimeRemaining = 0.0
-        //gameInfoLabel?.text = gameInfo
+        gameTimeRemaining = 0.0
+        gameInfoLabel?.text = gameInfo
         return labelText
     }
     
@@ -45,9 +45,9 @@ class GameSceneViewController: UIViewController {
     private var rectanglesTouched: Int = 0 {
         didSet { gameInfoLabel?.text = gameInfo } }
     // Init the time remaining
-    //private lazy var gameTimeRemaining = gameDuration {
-    //    didSet { gameInfoLabel?.text = gameInfo }
-    //}
+    private var gameTimeRemaining = gameDuration {
+        didSet { gameInfoLabel?.text = gameInfo }
+    }
     
     // MARK: - ==== View Controller Methods ====
     override func viewDidLoad() {
@@ -60,11 +60,11 @@ class GameSceneViewController: UIViewController {
     private var gameInProgress = false
     
     @objc private func handleTouch(sender: UIButton) {
-        /*
+        
         if(gameInProgress == false) {
             return
         }
-        */
+      
         //print("\(#function) - \(sender)")
         // Add emoji text to the rectangle
         sender.setTitle("😄", for: .normal)
@@ -81,9 +81,10 @@ class GameSceneViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Creates a rectangle 
-        createRectangle()
-        createRectangle()
-        createRectangle()
+        //createRectangle()
+        //createRectangle()
+        //createRectangle()
+        startGameRunning()
     }
 
 
@@ -107,7 +108,7 @@ extension GameSceneViewController {
     private func createRectangle() {
         rectanglesCreated += 1
         // Decrement the game time remaining
-        //gameTimeRemaining -= newRectInterval
+        gameTimeRemaining -= newRectInterval
         // Get random values for size and location
         let randSize = Utility.getRandomSize(fromMin: rectSizeMin, throughMax: rectSizeMax)
         let randLocation = Utility.getRandomLocation(size: randSize, screenSize: view.bounds.size)
