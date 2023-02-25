@@ -22,7 +22,7 @@ class GameSceneViewController: UIViewController {
     }
     
     // Rectangle creation interval
-    private var newRectInterval: TimeInterval = 1.2
+    private var newRectInterval: TimeInterval = 0.6
     // Rectangle creation, so the timer can be stopped
     private var newRectTimer: Timer?
 
@@ -33,7 +33,7 @@ class GameSceneViewController: UIViewController {
     @IBOutlet weak var gameInfoLabel: UILabel!
     private var gameInfo: String {
         
-        let labelText = "Total: \(rectanglesCreated) - Touched \(rectanglesTouched) - Time left: \(gameTimeRemaining)"
+        let labelText = "Pairs Created: \(rectPairsCreated) - Matches Made: \(rectPairsTouched) - Time left: \(gameTimeRemaining)"
     
         // End of game, no time left, make sure label is updated
         //gameTimeRemaining = 0.0
@@ -44,9 +44,9 @@ class GameSceneViewController: UIViewController {
     
     
     // Counters, property observers used
-    private var rectanglesCreated: Int = 0 {
+    private var rectPairsCreated: Int = 0 {
         didSet { gameInfoLabel?.text = gameInfo } }
-    private var rectanglesTouched: Int = 0 {
+    private var rectPairsTouched: Int = 0 {
         didSet { gameInfoLabel?.text = gameInfo } }
     // Init the time remaining
     private var gameTimeRemaining = gameDuration {
@@ -72,11 +72,13 @@ class GameSceneViewController: UIViewController {
         //print("\(#function) - \(sender)")
         // Add emoji text to the rectangle
         sender.setTitle("😄", for: .normal)
+        
+      
         // Remove the rectangle
         removeRectangle(rectangle: sender)
         // Remove the final button owner
         sender.removeFromSuperview()
-        rectanglesTouched += 1
+        rectPairsTouched += 1
     }
 
     
@@ -110,7 +112,7 @@ private var gameTimer: Timer?
 extension GameSceneViewController {
 //================================================
     private func createRectangle() {
-        rectanglesCreated += 1
+        //rectPairsCreated += 1
         
         // Decrement the game time remaining
         gameTimeRemaining -= newRectInterval
@@ -148,6 +150,14 @@ extension GameSceneViewController {
         view.bringSubviewToFront(gameInfoLabel!)
 
     }
+    private func createPairOfRectangles() {
+        rectangleOne = createRectangle()
+        rectangleTwo = createRectangle()
+        rectangleTwo.backgroundColor = rectangleOne.backgroundColor
+        rectangleTwo.frame.size.width = rectangleOne.frame.size.width
+        rectangleTwo.frame.size.height = rectangleTwo.frame.size.height
+        rectPairsCreated += 1 
+    }
     
     //================================================
     func removeRectangle(rectangle: UIButton) {
@@ -183,7 +193,8 @@ extension GameSceneViewController {
         }
         
         gameInProgress = true
-        newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval, repeats: true) { _ in self.createRectangle()}
+        //newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval, repeats: true) { _ in self.createRectangle()}
+        newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval, repeats: true) { _ in self.createPairOfRectangles()}
         
        //Timer to end the game
        gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration,
