@@ -29,7 +29,10 @@ class GameSceneViewController: UIViewController {
     // Random transparency on or off
     private var randomAlpha = false
 
-
+    //Variables to keep track of the first button clicked 
+    private var isFirstClickedButton: Bool = true
+    private var firstButtonClicked: UIButton?
+    
     @IBOutlet weak var gameInfoLabel: UILabel!
     private var gameInfo: String {
         
