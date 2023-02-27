@@ -194,8 +194,11 @@ extension GameSceneViewController {
 
 extension GameSceneViewController {
     private func startGameRunning() {
-        //Removes all rectangles when game is restarted
+        //Removes all rectangles when game is restarted and sets up game
         removeSavedRectangles()
+        rectPairsCreated = 0 
+        rectPairsTouched = 0 
+        gameTimeRemaining = gameDuration
         
         // Init label colors
         gameInfoLabel.textColor = .black
