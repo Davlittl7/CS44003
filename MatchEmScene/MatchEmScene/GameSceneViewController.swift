@@ -237,6 +237,7 @@ extension GameSceneViewController {
     //================================================
     private func stopGameRunning() {
         // Make the label stand out
+        removeSavedRectangles()
         gameInfoLabel.textColor = .red
         gameInfoLabel.backgroundColor = .black
         
