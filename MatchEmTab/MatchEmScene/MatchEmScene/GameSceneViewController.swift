@@ -253,4 +253,9 @@ extension GameSceneViewController {
         highScores.sort()
         print(highScores)
     }
+    
+    //=================================================
+    private func resumeGame() {}
+    
+    public func pauseGame() {}
 }
