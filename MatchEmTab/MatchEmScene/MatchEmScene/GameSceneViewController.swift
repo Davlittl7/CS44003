@@ -243,5 +243,13 @@ extension GameSceneViewController {
         if let timer = newRectTimer { timer.invalidate() }
         // Remove the reference to the timer object
         self.newRectTimer = nil
+        for score in highScores {
+            if(rectPairsCreated > score) {
+                score = rectPairsCreated
+                return
+            }
+        }
+        highScores.sort()
+        print(highScores)
     }
 }
