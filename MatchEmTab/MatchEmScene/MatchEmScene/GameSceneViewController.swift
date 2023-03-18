@@ -14,6 +14,7 @@ private let rectSizeMin: CGFloat = 50.0
 private let rectSizeMax: CGFloat = 150.0
 // How long for the rectangle to fade away
 private var fadeDuration: TimeInterval = 0.8
+var highScores = [0, 0, 0]
 
 class GameSceneViewController: UIViewController {
     //================================================
