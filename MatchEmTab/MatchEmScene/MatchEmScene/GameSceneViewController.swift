@@ -111,6 +111,10 @@ class GameSceneViewController: UIViewController {
         // Starts running the game
         //startGameRunning()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 
 
 }
