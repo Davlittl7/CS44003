@@ -37,13 +37,7 @@ class GameSceneViewController: UIViewController {
     @IBAction func sAndRButtonPressed(_ sender: UIButton) {
         startGameRunning();
         sAndRButton.isHidden = true
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + 12, execute: {
-            sender.isHidden = false
-            sender.setTitle("Restart", for: .normal)
-            
-        })
-        */
+        print(highScores)
     }
     
     @IBOutlet weak var gameInfoLabel: UILabel!
@@ -264,28 +258,27 @@ extension GameSceneViewController {
         // Remove the reference to the timer object
         self.newRectTimer = nil
         for i in highScores.indices {
-            if(rectPairsCreated > highScores[i]) {
-                highScores[i] = rectPairsCreated
+            if(highScores[i] == 0) {
+                highScores[i] = rectPairsTouched
                 return
             }
         }
+        
         highScores.sort()
-        print(highScores)
     }
     
     //=================================================
     private func resumeGame() {
         newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval, repeats: true) { _ in self.createPairOfRectangles()}
         
-        gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration,
+        
+        gameTimer = Timer.scheduledTimer(withTimeInterval: gameTimeRemaining,
              repeats: false) { _ in self.stopGameRunning() }
     }
     
     public func pauseGame() {
         newRectTimer?.invalidate()
         gameTimer?.invalidate()
-        
-        newRectTimer = nil
-        gameTimer = nil
+    
     }
 }
