@@ -37,11 +37,13 @@ class GameSceneViewController: UIViewController {
     @IBAction func sAndRButtonPressed(_ sender: UIButton) {
         startGameRunning();
         sAndRButton.isHidden = true
+        /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 12, execute: {
             sender.isHidden = false
             sender.setTitle("Restart", for: .normal)
             
         })
+        */
     }
     
     @IBOutlet weak var gameInfoLabel: UILabel!
@@ -246,8 +248,13 @@ extension GameSceneViewController {
     }
     //================================================
     private func stopGameRunning() {
-        // Make the label stand out
+       
+        //Modify button, make it visible and bring it forward
+        sAndRButton.isHidden = false
+        sAndRButton.setTitle("Restart", for: .normal)
         view.bringSubviewToFront(sAndRButton)
+        
+        // Make the label stand out
         gameInfoLabel.textColor = .red
         gameInfoLabel.backgroundColor = .black
         
