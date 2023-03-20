@@ -242,8 +242,10 @@ extension GameSceneViewController {
     }
     
     //================================================
-    //Sorts the high scores within an array (goes in reverse)
-    private func sortScores() {
+    
+    //Checks to see if new val for rectPairsTouched should be 
+    //added into high score list
+    private func checkHighScores() {
         for i in highScores.indices {
             if(highScores[2 - i] == 0) {
                 highScores[2 - i] = rectPairsTouched
