@@ -23,6 +23,19 @@ class ConfigSceneViewController: UIViewController {
         let labelText = "1. \(matchSceneVC?.highScores[2]) \n 2. \(matchSceneVC?.highScores[1]) \n 3. \(matchSceneVC?.highScores[0]) "
         return labelText
     }
+    
+    private var matchScenceVC?.highScores[2]: Int = 0 {
+        didSet { highScoreLabel?.text = highScore } }
+    private var matchSceneVC?.highScores[1]: Int = 0 {
+        didSet { highScoreLabel?.text = highScore } }
+    private var matchSceneVC?.highScores[0]: Int = 0 {
+        didSet { highScoreLabel?.text = highScore } }
+    
+    /*
+    private var matchSceneVC?.highScores: Array<Int> = [0, 0, 0] {
+        didSet { highScoreLabel?.text = highScore } }
+    */ 
+    
     /*
     // MARK: - Navigation
 
