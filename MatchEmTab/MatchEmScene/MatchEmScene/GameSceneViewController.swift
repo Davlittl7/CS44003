@@ -240,6 +240,19 @@ extension GameSceneViewController {
        gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration,
             repeats: false) { _ in self.stopGameRunning() }
     }
+    
+    //================================================
+    private func sortScores() {
+        for i in highScores.indices {
+            if(highScores[2 - i] == 0) {
+                highScores[2 - i] = rectPairsTouched
+                return
+            }
+        }
+        
+        highScores.sort()
+    }
+    
     //================================================
     private func stopGameRunning() {
        
@@ -257,16 +270,9 @@ extension GameSceneViewController {
         if let timer = newRectTimer { timer.invalidate() }
         // Remove the reference to the timer object
         self.newRectTimer = nil
-        for i in highScores.indices {
-            if(highScores[i] == 0) {
-                highScores[i] = rectPairsTouched
-                return
-            }
-        }
-        
-        highScores.sort()
+        sortScores();
     }
-    
+   
     //=================================================
     private func resumeGame() {
         newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval, repeats: true) { _ in self.createPairOfRectangles()}
