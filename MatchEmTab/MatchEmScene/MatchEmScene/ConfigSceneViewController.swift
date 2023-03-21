@@ -20,10 +20,18 @@ class ConfigSceneViewController: UIViewController {
     
     @IBOutlet weak var highScoreLabel: UILabel!
     private var highScore: String {
-        let labelText = "1. \(matchSceneVC?.highScores[2]) \n 2. \(matchSceneVC?.highScores[1]) \n 3. \(matchSceneVC?.highScores[0]) "
+        let labelText = "1. \(firstPlace) \n 2. \(secondPlace) \n 3. \(thirdPlace) "
         return labelText
     }
     
+    private var firstPlace: Int = matchSceneVC?.highScores[2] {
+        didSet { highScoreLabel?.text = highScore } }
+    private var secondPlace: Int = matchSceneVC?.highScores[1] {
+        didSet { highScoreLabel?.text = highScore } }
+    private var thirdPlace: Int = matchSceneVC?.highScores[0] {
+        didSet { highScoreLabel?.text = highScore } }
+    
+    /*
     private var matchScenceVC?.highScores[2]: Int = 0 {
         didSet { highScoreLabel?.text = highScore } }
     private var matchSceneVC?.highScores[1]: Int = 0 {
@@ -31,7 +39,7 @@ class ConfigSceneViewController: UIViewController {
     private var matchSceneVC?.highScores[0]: Int = 0 {
         didSet { highScoreLabel?.text = highScore } }
     
-    /*
+    
     private var matchSceneVC?.highScores: Array<Int> = [0, 0, 0] {
         didSet { highScoreLabel?.text = highScore } }
     */ 
