@@ -144,7 +144,7 @@ extension GameSceneViewController {
    
         // Get random values for size and location
         let randSize = Utility.getRandomSize(fromMin: rectSizeMin, throughMax: rectSizeMax)
-        let randLocation = Utility.getRandomLocation(size: randSize, screenSize: view.bounds.size - 15)
+        let randLocation = Utility.getRandomLocation(size: randSize, screenSize: view.bounds.size - 3)
         let randomFrame = CGRect(origin: randLocation, size: randSize)
         
         // Creates a rectangle
