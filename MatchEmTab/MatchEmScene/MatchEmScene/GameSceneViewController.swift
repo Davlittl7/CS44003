@@ -73,7 +73,7 @@ class GameSceneViewController: UIViewController {
             resumeGame()
         } else if (gameInProgress && !pausedOrNot) {
             pauseGame()
-	    }
+	}
         
         
         
