@@ -30,7 +30,9 @@ class GameSceneViewController: UIViewController {
 
     // Random transparency on or off
     private var randomAlpha = false
+    private var pausedOrNot = false
     
+    //Keeps track of all the high scores
     var highScores = [0, 0, 0]
 
     
@@ -49,6 +51,33 @@ class GameSceneViewController: UIViewController {
         let labelText = "Pairs Created: \(rectPairsCreated) - Matches: \(rectPairsTouched) - Timer: \(gameTimeRemaining)"
         
         return labelText
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+	  
+        //Ensures that it is a two-finger touch 
+        if touches.count != 2 {
+            return
+        }
+        
+        //Makes sure you can start and restart a game
+        if !gameInProgress {
+            startGameRunning()
+            return
+        }
+            
+        //Allows for pausing of the game
+        if(gameInProgress == true && pausedOrNot == false) {
+		    pausedOrNot = true
+		    pauseGame()
+	    }
+        
+        //Allows for the game to resume after being paused
+        if(gameInProgress == true && pausedOrNot == true) {
+		    pausedOrNot = false
+		    resumeGame()
+	    }
+        
     }
     
 
@@ -77,9 +106,10 @@ class GameSceneViewController: UIViewController {
     private var firstButtonClicked: UIButton?
     @objc private func handleTouch(sender: UIButton) {
         //Makes sure we can't click anything once the game is over
-        if(gameInProgress == false) {
+        if(gameInProgress == false || pausedOrNot) {
             return
         }
+        
         
         //Checks for if it is the first button you clicked and saves it
         if(isFirstClickedButton) {
